@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS | Luxury Timepieces</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #C4A661;
+            --text-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            color: #ffffff;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 72px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #ffffff; /* Added color */
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #ffffff; /* Added color */
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            background-color: #A88F4D;
+        }
+
+        .featured-section {
+            padding: 100px 40px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .watch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .watch-card {
+            background: #222;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .watch-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .watch-card img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .watch-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .watch-card p {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .craftsmanship-section {
+            padding: 100px 40px;
+            background: #111;
+        }
+        
+        .craft-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .craft-text {
+            flex: 1;
+        }
+        
+        .craft-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .craft-video {
+            flex: 1;
+            position: relative;
+        }
+        
+        .craft-video video {
+            width: 100%;
+            height: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .craft-content {
+                flex-direction: column;
+            }
+        }
+        
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+            
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CHRONOS</div>
+        <nav class="nav-links">
+            <a href="collection.html">Collections</a>
+            <a href="craftmanship.html">Craftsmanship</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="service.html">Services</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="14470121-uhd_3840_2160_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Timeless Elegance</h1>
+            <p>Experience the pinnacle of horological artistry, where tradition meets innovation in every meticulously crafted timepiece.</p>
+            <a href="collection.html" class="cta-button">Explore Collections</a>
+        </div>
+    </section>
+
+
+    <section class="featured-section">
+        <h2 class="section-title">Featured Timepieces</h2>
+        <div class="watch-grid">
+            <div class="watch-card">
+                <img src="pexels-jordanr93-10436602.jpg" alt="Luxury Watch 1">
+                <h3>Celestial Chronograph</h3>
+                <p>A masterpiece of precision engineering and timeless design.</p>
+                <a href="Celestial Chronograph.html" class="cta-button">Discover</a>
+            </div>
+            <div class="watch-card">
+                <img src="pexels-natalia-yamboglo-455894192-16668591.jpg" alt="Luxury Watch 2">
+                <h3>Royal Oak Perpetual</h3>
+                <p>Epitomizing luxury with its distinctive octagonal bezel.</p>
+                <a href="Royal Oak Perpetual.html" class="cta-button">Discover</a>
+            </div>
+            <div class="watch-card">
+                <img src="pexels-ishak-ektiren-327147089-27165809.jpg" alt="Luxury Watch 3">
+                <h3>Nautilus Grandeur</h3>
+                <p>Seamlessly blending sportiness with sophisticated elegance.</p>
+                <a href="Nautilus Grandeur.html" class="cta-button">Discover</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="craftsmanship-section">
+        <div class="craft-content">
+            <div class="craft-text">
+                <h2>Unparalleled Craftsmanship</h2>
+                <p>Each timepiece is a testament to centuries of watchmaking expertise, combining traditional techniques with cutting-edge innovation. Our master craftsmen dedicate countless hours to perfecting every detail, ensuring that each watch is a masterpiece of precision and beauty.</p>
+            </div>
+            <div class="craft-video">
+                <video width="100%" height="auto" autoplay loop muted>
+                    <source src="8322334-uhd_4096_2160_25fps.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+    
+    
+    <script>
+        // Smooth scroll handling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

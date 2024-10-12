@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS | Craftsmanship</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #C4A661;
+            --text-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+         .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 72px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #C4A661; /* Added color */
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #C4A661; /* Added color */
+        }
+        
+        .craftsmanship-hero {
+            height: 60vh;
+            background: url('pexels-frans-van-heerden-201846-1912172.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .craftsmanship-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+            color: #C4A661;
+        }
+
+        .craft-section {
+            padding: 80px 40px;
+        }
+
+        .craft-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .craft-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .craft-item img {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .video-section {
+            padding: 80px 40px;
+            background: #111;
+            text-align: center;
+            color: #fff; /* Optional: Make text color stand out */
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%; /* Ensures it fits within the page width */
+            margin: 0 auto;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video fills the container */
+        }
+        
+        .video-placeholder {
+            background: #333;
+            color: #fff; /* Text color for better visibility */
+            font-size: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1; /* If using a placeholder over video */
+        }
+        
+        .section-title {
+            font-size: 36px;
+            color: #C4A661; /* Matches the color you wanted for consistency */
+            margin-bottom: 40px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CHRONOS</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="collection.html">Collections</a>
+            <a href="craftmanship.html">Craftsmanship</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="service.html">Services</a>
+        </nav>
+    </header>
+
+    <section class="craftsmanship-hero">
+        <div class="hero-content">
+            <h1>The Art of Watchmaking</h1>
+            <p>Discover the meticulous craftsmanship behind every CHRONOS timepiece</p>
+        </div>
+    </section>
+
+    <section class="craft-section">
+        <h2 class="section-title">Our Expertise</h2>
+        <div class="craft-grid">
+            <div class="craft-item">
+                <img src="pexels-tima-miroshnichenko-8327524.jpg" alt="Movement Assembly">
+                <h3>Movement Assembly</h3>
+                <p>Each movement is assembled by hand, with our master watchmakers dedicating hours to ensuring perfect precision.</p>
+            </div>
+            <div class="craft-item">
+                <img src="pexels-tima-miroshnichenko-8327876.jpg" alt="Case Making">
+                <h3>Case Making</h3>
+                <p>Our cases are crafted from the finest materials, shaped and polished to perfection using both traditional and cutting-edge techniques.</p>
+            </div>
+            <div class="craft-item">
+                <img src="pexels-tima-miroshnichenko-8327816.jpg" alt="Dial Creation">
+                <h3>Dial Creation</h3>
+                <p>Every dial is a work of art, featuring intricate details and hand-applied indices that capture the essence of luxury.</p>
+            </div>
+            <div class="craft-item">
+                <img src="pexels-tima-miroshnichenko-8327590.jpg" alt="Quality Control">
+                <h3>Quality Control</h3>
+                <p>Our timepieces undergo rigorous testing to ensure they meet our exacting standards for both performance and aesthetics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <h2 class="section-title">The Making of Excellence</h2>
+        <div class="video-container">
+            <video class="video-placeholder" autoplay loop muted>
+                <source src="8322334-uhd_4096_2160_25fps.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.craft-item', {
+            scrollTrigger: {
+                trigger: '.craft-grid',
+                start: 'top center',
+                toggleActions: 'play none none reverse'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2
+        });
+    </script>
+</body>
+</html>

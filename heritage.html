@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS | Heritage</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #C4A661;
+            --text-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 40px 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -10px;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: #222;
+            position: relative;
+            border-radius: 6px;
+        }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .milestone-card {
+            background: #222;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .milestone-card img {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .heritage-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: url('pexels-abdullah-211483-678248.jpg') center/cover no-repeat;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            color: #C4A661;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 72px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CHRONOS</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="collection.html">Collections</a>
+            <a href="craftmanship.html">Craftsmanship</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="service.html">Services</a>
+        </nav>
+    </header>
+
+    <section class="hero" style="height: 60vh;">
+        <div class="hero-content">
+            <h1>Our Heritage</h1>
+            <p>A legacy of excellence since 1875</p>
+        </div>
+    </section>
+
+    <div class="timeline">
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h2>1875</h2>
+                <p>Foundation of CHRONOS by master watchmaker Alexandre Chronos in Geneva, Switzerland.</p>
+            </div>
+        </div>
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h2>1925</h2>
+                <p>Introduction of the revolutionary self-winding mechanism, setting new standards in watchmaking.</p>
+            </div>
+        </div>
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h2>1950</h2>
+                <p>Launch of the iconic Celestial collection, featuring groundbreaking astronomical complications.</p>
+            </div>
+        </div>
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h2>1975</h2>
+                <p>CHRONOS introduces the world's thinnest automatic perpetual calendar watch.</p>
+            </div>
+        </div>
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h2>2000</h2>
+                <p>Opening of the CHRONOS Museum, showcasing our rich history and technological innovations.</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <h2 class="section-title">Milestone Timepieces</h2>
+        <div class="milestone-grid">
+            <div class="milestone-card">
+                <img src="pexels-john-289283-2922718.jpg" alt="First CHRONOS Watch">
+                <h3>1875 Original</h3>
+                <p>The first timepiece created by Alexandre Chronos</p>
+            </div>
+            <div class="milestone-card">
+                <img src="pexels-david-bartus-43782-295885.jpg" alt="Celestial Collection">
+                <h3>1950 Celestial</h3>
+                <p>The watch that revolutionized astronomical complications</p>
+            </div>
+            <div class="milestone-card">
+                <img src="pexels-felixmittermeier-325871.jpg" alt="Perpetual Calendar">
+                <h3>1975 Perpetual</h3>
+                <p>World's thinnest automatic perpetual calendar</p>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.timeline-item', {
+            scrollTrigger: {
+                trigger: '.timeline',
+                start: 'top center',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            duration: 1,
+            stagger: 0.3
+        });
+
+        gsap.from('.milestone-card', {
+            scrollTrigger: {
+                trigger: '.milestone-grid',
+                start: 'top center',
+                toggleActions: 'play none none reverse'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2
+        });
+    </script>
+</body>
+</html>

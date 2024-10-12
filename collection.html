@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS | Collections</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #C4A661;
+            --text-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .collections-grid {
+            padding: 120px 40px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .collection-item {
+            background: #222;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .collection-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .collection-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .collection-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .collection-item p {
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background: #A88F4D;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 40px;
+            background: #222;
+            padding: 20px;
+            min-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .cart-item img {
+            width: 60px;
+            margin-right: 15px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background: #A88F4D;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CHRONOS</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="collection.html">Collections</a>
+            <a href="craftmanship.html">Craftsmanship</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="service.html">Services</a>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="cart-modal" id="cartModal">
+        <h3>Your Cart</h3>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0</span>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <div class="collections-grid">
+        <div class="collection-item">
+            <img src="pexels-jordanr93-10436602.jpg" alt="Celestial Chronograph">
+            <h3>Celestial Chronograph</h3>
+            <p>A masterpiece of precision engineering with celestial complications.</p>
+            <div class="price">$25,000</div>
+            <button class="add-to-cart" onclick="addToCart('Celestial Chronograph', 25000)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-natalia-yamboglo-455894192-16668591.jpg" alt="Royal Oak Perpetual">
+            <h3>Royal Oak Perpetual</h3>
+            <p>Epitomizing luxury with its distinctive octagonal bezel.</p>
+            <div class="price">$32,000</div>
+            <button class="add-to-cart" onclick="addToCart('Royal Oak Perpetual', 32000)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-ishak-ektiren-327147089-27165809.jpg" alt="Nautilus Grandeur">
+            <h3>Nautilus Grandeur</h3>
+            <p>Seamlessly blending sportiness with sophisticated elegance.</p>
+            <div class="price">$28,500</div>
+            <button class="add-to-cart" onclick="addToCart('Nautilus Grandeur', 28500)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-fox-58267-6804457.jpg" alt="Daytona Legacy">
+            <h3>Daytona Legacy</h3>
+            <p>An icon of motorsport with its sleek design and precision timing.</p>
+            <div class="price">$18,000</div>
+            <button class="add-to-cart" onclick="addToCart('Daytona Legacy', 18000)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-alexazabache-3766112.jpg" alt="Speedmaster Lunar">
+            <h3>Speedmaster Lunar</h3>
+            <p>The watch that went to the moon, a symbol of endurance and exploration.</p>
+            <div class="price">$22,500</div>
+            <button class="add-to-cart" onclick="addToCart('Speedmaster Lunar', 22500)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-alexazabache-3766111.jpg" alt="Submariner Deep Dive">
+            <h3>Submariner Deep Dive</h3>
+            <p>A classic diver's watch, built to endure the ocean depths.</p>
+            <div class="price">$29,000</div>
+            <button class="add-to-cart" onclick="addToCart('Submariner Deep Dive', 29000)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-chuck-9011195.jpg" alt="Tourbillon Masterpiece">
+            <h3>Tourbillon Masterpiece</h3>
+            <p>An intricate tourbillon movement that defies gravity and enhances accuracy.</p>
+            <div class="price">$48,000</div>
+            <button class="add-to-cart" onclick="addToCart('Tourbillon Masterpiece', 48000)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-the-glorious-studio-3584518-13273982.jpg" alt="Classique Elegance">
+            <h3>Classique Elegance</h3>
+            <p>Timeless design with an elegant profile and precise craftsmanship.</p>
+            <div class="price">$34,000</div>
+            <button class="add-to-cart" onclick="addToCart('Classique Elegance', 34000)">Add to Cart</button>
+        </div>
+        <div class="collection-item">
+            <img src="pexels-osmany-mederos-211956483-18868356.jpg" alt="Aquaracer Professional">
+            <h3>Aquaracer Professional</h3>
+            <p>Designed for extreme aquatic environments with unparalleled performance.</p>
+            <div class="price">$21,500</div>
+            <button class="add-to-cart" onclick="addToCart('Aquaracer Professional', 21500)">Add to Cart</button>
+        </div>
+       
+    </div>
+    
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotalElement = document.getElementById('cartTotal');
+            
+            cartCount.textContent = cart.length;
+            cartItems.innerHTML = '';
+            cartTotal = 0;
+
+            cart.forEach(item => {
+                cartTotal += item.price;
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <img src="/api/placeholder/60/60" alt="${item.name}">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>$${item.price.toLocaleString()}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartTotalElement.textContent = `$${cartTotal.toLocaleString()}`;
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            cartModal.style.display = cartModal.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert('Thank you for your purchase! Total: $' + cartTotal.toLocaleString());
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>
