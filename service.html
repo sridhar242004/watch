@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS | Services</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #C4A661;
+            --text-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            color: #C4A661;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 72px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .service-card {
+            background: #222;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #444;
+            color: var(--text-color);
+        }
+
+        .submit-btn {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: #A88F4D;
+        }
+
+        .faq-section {
+            padding: 40px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            background: #222;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            background: #333;
+            padding: 15px;
+            display: none;
+        }
+
+        .faq-question.active + .faq-answer {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CHRONOS</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="collection.html">Collections</a>
+            <a href="craftmanship.html">Craftsmanship</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="service.html">Services</a>
+        </nav>
+    </header>
+
+    <section class="hero" style="height: 60vh;">
+        <div class="hero-content">
+            <h1>Our Services</h1>
+            <p>Exceptional care for exceptional timepieces</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Our Offerings</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Maintenance Service</h3>
+                <p>Complete overhaul of your timepiece to ensure optimal performance</p>
+                <button class="cta-button" onclick="scrollToBooking()">Book Service</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Restoration</h3>
+                <p>Expert restoration of vintage CHRONOS timepieces</p>
+                <button class="cta-button" onclick="scrollToBooking()">Book Service</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📏</div>
+                <h3>Strap Fitting</h3>
+                <p>Custom fitting and replacement of watch straps</p>
+                <button class="cta-button" onclick="scrollToBooking()">Book Service</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Book a Service</h2>
+        <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="service">Service Type</label>
+                <select id="service" required>
+                    <option value="">Select a service</option>
+                    <option value="maintenance">Maintenance Service</option>
+                    <option value="restoration">Restoration</option>
+                    <option value="strap">Strap Fitting</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="model">Watch Model</label>
+                <input type="text" id="model" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">Additional Notes</label>
+                <textarea id="notes" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Schedule Service</button>
+        </form>
+    </section>
+
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question">
+                How long does a maintenance service take?
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                A typical maintenance service takes 4-6 weeks, depending on the complexity of your timepiece and current service volume.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                What does the warranty cover?
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                Our service warranty covers all parts and labor for a period of two years from the date of service completion.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                Do you provide estimates before servicing?
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                Yes, we provide detailed estimates for all services after initial inspection of your timepiece. No work begins without your approval.
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToBooking() {
+            document.querySelector('.booking-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for booking a service. We will contact you shortly to confirm your appointment.');
+        });
+
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                question.classList.toggle('active');
+                question.querySelector('.toggle').textContent = question.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+       
+
+        gsap.from('.booking-form', {
+            scrollTrigger: {
+                trigger: '.booking-form',
+                start: 'top center',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            duration: 1
+        });
+
+        gsap.from('.faq-item', {
+            scrollTrigger: {
+                trigger: '.faq-section',
+                start: 'top center',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            stagger: 0.15
+        });
+    </script>
+</body>
+</html>

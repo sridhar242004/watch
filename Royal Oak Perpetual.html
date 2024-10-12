@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Oak Perpetual | CHRONOS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* The CSS styles remain the same as in the Celestial Chronograph page */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #C4A661;
+            --text-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .product-section {
+            padding: 100px 40px;
+            display: flex;
+            gap: 60px;
+        }
+
+        .product-gallery {
+            flex: 1;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .thumbnail:hover {
+            opacity: 0.8;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            margin-bottom: 30px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .discount {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .size-selector {
+            margin-bottom: 20px;
+        }
+
+        .size-selector select {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #A88F4D;
+        }
+
+        .features-section {
+            margin-top: 60px;
+        }
+
+        .features-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            list-style-type: none;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+        }
+
+        .reviews-section {
+            margin-top: 60px;
+        }
+
+        .review {
+            background-color: #222;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .review-author {
+            font-weight: bold;
+        }
+
+        .review-rating {
+            color: var(--accent-color);
+        }
+
+        .live-demo {
+            margin-top: 60px;
+            text-align: center; /* Center the title */
+        }
+        
+        .demo-video {
+            position: relative;
+            width: 100%;
+            max-width: 100%; /* Ensures the container doesn't exceed the viewport width */
+            height: 0;
+            padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
+            background-color: #333; /* Placeholder background */
+            overflow: hidden; /* Ensures content stays within the container */
+        }
+        
+        .demo-video video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video fills the container without stretching */
+        }
+
+        .purchase-history {
+            margin-top: 60px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        @media (max-width: 768px) {
+            .product-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CHRONOS</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="collection.html">Collections</a>
+            <a href="craftmanship.html">Craftsmanship</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="service.html">Services</a>
+        </nav>
+    </header>
+
+    <section class="product-section">
+        <div class="product-gallery">
+            <img src="pexels-natalia-yamboglo-455894192-16668591.jpg" alt="Royal Oak Perpetual" class="main-image">
+        </div>
+        <div class="product-info">
+            <h1 class="product-title">Royal Oak Perpetual</h1>
+            <p class="product-description">Epitomizing luxury with its distinctive octagonal bezel, the Royal Oak Perpetual is a true icon in the world of haute horlogerie. This exceptional timepiece combines the classic Royal Oak design with the complexity of a perpetual calendar, creating a watch that's both visually striking and mechanically impressive.</p>
+            <div class="product-price">
+                $85,000 <span class="discount">Save 5%</span>
+            </div>
+            <div class="size-selector">
+                <select>
+                    <option>Select Size</option>
+                    <option>39mm</option>
+                    <option>41mm</option>
+                </select>
+            </div>
+            <button class="cta-button">Add to Cart</button>
+
+            <div class="features-section">
+                <h2 class="features-title">Features</h2>
+                <ul class="features-list">
+                    <li>In-house automatic movement with perpetual calendar</li>
+                    <li>40-hour power reserve</li>
+                    <li>Sapphire crystal case back</li>
+                    <li>Water-resistant to 50 meters</li>
+                    <li>Day, date, month, leap year, and moon phase indicators</li>
+                    <li>Signature "Grande Tapisserie" dial pattern</li>
+                    <li>Stainless steel case and bracelet</li>
+                    <li>Folding clasp with AP emblem</li>
+                    <li>Octagonal bezel with exposed screws</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <h2 class="features-title">Customer Reviews</h2>
+        <div class="review">
+            <div class="review-header">
+                <span class="review-author">Michael R.</span>
+                <span class="review-rating">★★★★★</span>
+            </div>
+            <p>The Royal Oak Perpetual is the pinnacle of luxury watchmaking. The perpetual calendar complication is a marvel of engineering, and the iconic design turns heads wherever I go. Worth every penny.</p>
+        </div>
+        <div class="review">
+            <div class="review-header">
+                <span class="review-author">Emma L.</span>
+                <span class="review-rating">★★★★★</span>
+            </div>
+            <p>I've been collecting watches for years, and this Royal Oak Perpetual is the crown jewel of my collection. The attention to detail is extraordinary, from the intricate dial to the perfectly integrated bracelet.</p>
+        </div>
+    </section>
+
+    <section class="live-demo">
+        <h2 class="features-title">Live Demo</h2>
+        <div class="demo-video">
+            <video autoplay loop muted playsinline>
+                <source src="1034067-hd_1920_1080_25fps.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    
+
+    <section class="purchase-history">
+        <h2 class="features-title">Recent Purchases</h2>
+        <div class="history-item">
+            <span>5 minutes ago</span>
+            <span>Geneva, Switzerland</span>
+        </div>
+        <div class="history-item">
+            <span>23 minutes ago</span>
+            <span>Hong Kong</span>
+        </div>
+        <div class="history-item">
+            <span>2 hours ago</span>
+            <span>Los Angeles, USA</span>
+        </div>
+    </section>
+
+    <script>
+        // Thumbnail click handler
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                document.querySelector('.main-image').src = this.src.replace('80/80', '600/600');
+            });
+        });
+
+        // Simulated real-time purchase updates
+        setInterval(() => {
+            const locations = ['Milan, Italy', 'Singapore', 'Shanghai, China', 'Dubai, UAE', 'New York, USA'];
+            const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+            const randomTime = Math.floor(Math.random() * 60) + 1;
+            
+            const newPurchase = document.createElement('div');
+            newPurchase.className = 'history-item';
+            newPurchase.innerHTML = `
+                <span>${randomTime} minute${randomTime > 1 ? 's' : ''} ago</span>
+                <span>${randomLocation}</span>
+            `;
+
+            const purchaseHistory = document.querySelector('.purchase-history');
+            purchaseHistory.insertBefore(newPurchase, purchaseHistory.children[1]);
+
+            if (purchaseHistory.children.length > 4) {
+                purchaseHistory.removeChild(purchaseHistory.lastElementChild);
+            }
+        }, 30000); // Updates every 30 seconds
+    </script>
+</body>
+</html>
